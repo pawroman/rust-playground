@@ -1,22 +1,22 @@
 # Anagrams
 
-A simple anagram finder.
+A simple anagram finder program.
 
 
-# What I've learned
+## What I've learned
 
 - Pattern matching
 - Basic file reading
 - Basic ownership
 - Basic modules (main executable + supporting "library")
 
-# TODO
+## TODO
 
 - Tests
 - Python equivalent
-- Cleanup
+- Cleanup (separate into modules to learn about how Rust handles modularity)
 
-### How to run
+## How to run
 
 Tested with Rust version 1.19.0.
 
