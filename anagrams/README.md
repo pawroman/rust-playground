@@ -7,18 +7,19 @@ A simple anagram finder program.
 
 - Pattern matching
 - Basic file reading
-- Basic ownership
-- Basic modules (main executable + supporting "library")
+- Basic ownership and lifetimes
+- Basic modules (main executable + supporting modules)
+
+Also see `LEARNING:` comments in the source code.
 
 ## TODO
 
 - Tests
 - Python equivalent
-- Cleanup (separate into modules to learn about how Rust handles modularity)
 
 ## How to run
 
-Tested with Rust version 1.19.0.
+Tested with Rust version 1.21.0.
 
 ```
 $ cargo run --release -- --help
@@ -30,11 +31,11 @@ See: https://en.wikipedia.org/wiki/Words_(Unix)
 
 Example run:
 ```
-$ cargo run --release -- -w /usr/share/dict/words loop pole
+$ cargo run --release -- -d /usr/share/dict/words loop pole
    Compiling anagrams v0.1.0 (file:///...)
     Finished release [optimized] target(s) in 4.88 secs
      Running `target/release/anagrams -w /usr/share/dict/words loop pole`
-loop: ["Polo", "polo", "pool"]
-pole: ["Opel", "lope"]
+loop: Polo, polo, pool
+pole: Opel, lope
 ```
 
