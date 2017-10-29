@@ -57,8 +57,6 @@ impl AnagramDictTrait for AnagramDictionary {
     fn lookup<'a>(self: &'a AnagramDictionary, word: &str, case_sensitive: bool) -> Option<Vec<&'a str>> {
         if let Some(key) = anagram_key(&word, case_sensitive) {
             if let Some(values) = self.get(&key) {
-                // cloned -> get values - String not &String
-
                 let mut anagrams: Vec<_> = values
                     .iter()
                     .filter(|val| val.to_lowercase() != word.to_lowercase())
