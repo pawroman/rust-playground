@@ -45,7 +45,7 @@ impl Command {
 
             // LEARNING: de-structuring enum with named members
             ErrorExit { ref reason } => {
-                // LEARNING: moving out reason out of self is not possible here.
+                // LEARNING: moving reason out of self is not possible here.
                 //           Need to clone (make a copy of) the String.
                 return CommandResult::Error(reason.clone());
             },
