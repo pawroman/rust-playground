@@ -29,7 +29,8 @@ impl AnagramDictTrait for AnagramDictionary {
         if !(&words_list_path.is_file()) {
             return Err(io::Error::new(
                 io::ErrorKind::NotFound,
-                format!("Can't find file: `{:?}'", words_list_path)
+                // LEARNING: if to_str() fails (returns None), expect will cause runtime panic
+                format!("Can't find file: {}", words_list_path.to_str().expect("Invalid path"))
             ));
         }
 
