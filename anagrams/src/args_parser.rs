@@ -6,9 +6,9 @@ use config::Config;
 
 /// Poor man's command line arguments parsing.
 /// Done deliberately - to have fun with Rust matching.
-/// There are libraries to do this, e.g. https://crates.io/crates/getopts
+/// There are libraries to do this, e.g. <https://crates.io/crates/getopts>
 ///
-pub fn parse_args(args: &Vec<String>) -> Command {
+pub fn parse_args(args: &[String]) -> Command {
     // LEARNING: Rust is move by default.
     //           To get a hold of a vector (without copying), we need to *borrow* it
 

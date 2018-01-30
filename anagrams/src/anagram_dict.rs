@@ -45,7 +45,7 @@ impl AnagramDictTrait for AnagramDictionary {
         // filter_map -> skips None options
         for line in reader.lines().filter_map(|l| l.ok()) {
             if let Some(key) = anagram_key(&line, case_sensitive) {
-                let value = dict.entry(key).or_insert_with(|| WordSet::new());
+                let value = dict.entry(key).or_insert_with(WordSet::new);
 
                 value.insert(line);
             }
@@ -56,7 +56,7 @@ impl AnagramDictTrait for AnagramDictionary {
 
     /// Find anagrams.
     fn lookup<'a>(self: &'a AnagramDictionary, word: &str, case_sensitive: bool) -> Option<Vec<&'a str>> {
-        if let Some(key) = anagram_key(&word, case_sensitive) {
+        if let Some(key) = anagram_key(word, case_sensitive) {
             if let Some(values) = self.get(&key) {
                 let mut anagrams: Vec<_> = values
                     .iter()

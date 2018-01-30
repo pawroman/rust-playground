@@ -25,16 +25,8 @@ fn main() {
     let args: Vec<String> = std::env::args().collect();
     let command = parse_args(&args);
 
-    match command.execute() {
-        CommandResult::Error(reason) => {
-            println!("{}", reason);
-            std::process::exit(EXIT_CODE_ERROR);
-        }
-
-        // LEARNING: match everything else (success in this case).
-        //           This is needed because Rust match is always exhaustive.
-        _ => {
-
-        }
+    if let CommandResult::Error(reason) = command.execute() {
+        println!("{}", reason);
+        std::process::exit(EXIT_CODE_ERROR);
     }
 }

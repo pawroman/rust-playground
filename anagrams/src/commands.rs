@@ -27,13 +27,13 @@ impl Command {
         match *self {
             // LEARNING: because self is borrowed, need to access the members via a reference (ref)
             PrintUsage { ref base_name } => {
-                print_usage(&base_name);
+                print_usage(base_name);
             },
 
             PrintAnagrams(ref config) => {
                 match AnagramDictionary::load_from_path(&config.dictionary_path, config.case_sensitive) {
                     Ok(dict) => {
-                        lookup_and_print_anagrams(&dict, &config);
+                        lookup_and_print_anagrams(&dict, config);
                     },
                     Err(e) => {
                         return CommandResult::Error(
@@ -57,15 +57,15 @@ impl Command {
 
 
 fn lookup_and_print_anagrams(dict: &AnagramDictionary, config: &Config) {
-    for word in config.input_words.iter() {
-        if let Some(anagrams) = dict.lookup(&word, config.case_sensitive) {
-            print_anagrams(word, anagrams);
+    for word in &config.input_words {
+        if let Some(anagrams) = dict.lookup(word, config.case_sensitive) {
+            print_anagrams(word, &anagrams);
         }
     }
 }
 
 
-fn print_anagrams(word: &str, anagrams: Vec<&str>) {
+fn print_anagrams(word: &str, anagrams: &[&str]) {
     let formatted_anagrams = anagrams.join(", ");
 
     println!("{}: {}", word, formatted_anagrams)
