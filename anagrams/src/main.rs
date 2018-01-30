@@ -24,8 +24,10 @@ pub const EXIT_CODE_ERROR: i32 = 1;     // std::process::exit takes i32
 fn main() {
     let args: Vec<String> = std::env::args().collect();
     let command = parse_args(&args);
+    let result = command.execute();
 
-    if let CommandResult::Error(reason) = command.execute() {
+    // LEARNING: `if let` is like a one-pattern match
+    if let CommandResult::Error(reason) = result {
         println!("{}", reason);
         std::process::exit(EXIT_CODE_ERROR);
     }
