@@ -1,3 +1,6 @@
 [submodule "mmm"]
 	path = mmm
 	url = https://github.com/pawroman/mmm
+[submodule "rock-paper-scissors"]
+	path = rock-paper-scissors
+	url = https://github.com/pawroman/rock-paper-scissors
