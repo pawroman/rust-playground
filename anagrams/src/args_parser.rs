@@ -12,7 +12,7 @@ pub fn parse_args(args: &[String]) -> Command {
     // LEARNING: Rust is move by default.
     //           To get a hold of a vector (without copying), we need to *borrow* it
 
-    let (base_name, args) = (&args[0], &args[1..]);
+    let (base_name, args) = (args[0].clone(), &args[1..]);
 
     let mut config = Config::new();
     let mut expect_dictionary_path = false;
@@ -20,7 +20,9 @@ pub fn parse_args(args: &[String]) -> Command {
     for arg in args.iter() {
         match arg as &str {
             "-h" | "--help" => {
-                return Command::PrintUsage { base_name: base_name.clone() };
+                // LEARNING: can shorten `base_name: base_name` here
+                //           (because the local var name is the same as field name)
+                return Command::PrintUsage { base_name };
             },
 
             "-d" | "--dictionary" => {
